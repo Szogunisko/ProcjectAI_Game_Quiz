@@ -1,38 +1,73 @@
-package com.sample.rules
+package com.sample.rules;
+
 import java.util.List;
-import org.kie.api.runtime.KieRuntime
+import java.util.ArrayList;
+import org.kie.api.runtime.KieRuntime;
 import javax.swing.JOptionPane;
-import javax.swing.JFrame
-global JFrame frame
-global javax.swing.JTextArea textArea
-import com.sample.DroolsTest.Message;
- 	
+import javax.swing.JFrame;
+
+import com.sample.QuestionDialog;
+
+
+global JFrame frame;
+global javax.swing.JTextArea textArea;
+
+// Definicja klasy GUIState
 declare GUIState
-    trescPytania: String;            // treœæ pytania
-    opcje_odpowiedzi: List 			// opcje odpowiedzi
-    opcjaDomyslna: String;           // opcja domyœlna
-    typ: TypWyboru;               // CheckBox lub RadioButton
-    odpowiedz: String;               // odpowiedŸ u¿ytkownika
-end
- 
-declare enum TypWyboru
-  CHECK("Chekbox"),RADIO("Radiobutton");
-  fullName : String;
+    trescPytania: String
+    opcje_odpowiedzi: List
+    odpowiedz: String
 end
 
-rule "Hello World"
+
+rule "Init"
     when
-        m : Message( status == Message.HELLO, myMessage : message )
+        // Warunki inicjalizacyjne (jesli potrzebne)
     then
-        System.out.println( myMessage );
-        m.setMessage( "Goodbye cruel world" );
-        m.setStatus( Message.GOODBYE );
-        update( m );
+        String question = "What type of game are you looking for? Do you want to hone the ultimate warrior, or build a mighty nation?";
+        List<String> answers = new ArrayList<>();
+        answers.add("SHOOTERS");
+        answers.add("RPGS");
+        answers.add("STRATEGY");
+        answers.add("VIRTUAL WORLDS");
+        String final_answer = null;
+        insert(new GUIState(question, answers, final_answer));
 end
 
-rule "GoodBye"
+rule "Game Type"
     when
-        Message( status == Message.GOODBYE, myMessage : message )
+        t: GUIState(trescPytania == "What type of game are you looking for? Do you want to hone the ultimate warrior, or build a mighty nation?" && odpowiedz == null);
     then
-        System.out.println( myMessage );
+        System.out.println("EUREKA");
+        QuestionDialog dialog = new QuestionDialog(t.getTrescPytania(), t.getOpcje_odpowiedzi());
+        String selectedAnswer = dialog.showAndWait();
+        t.setOdpowiedz(selectedAnswer);
+        System.out.println("Selected answer: " + selectedAnswer);
+        update(t);  
 end
+
+rule "Shooter"
+	when
+		t: GUIState(odpowiedz == "SHOOTERS");
+	then
+		String question = "Would you rather fight on the ground or while flying through space?";
+        List<String> answers = new ArrayList<>();
+        answers.add("Flying  through space");
+        answers.add("On the ground");
+        String final_answer = null;
+        insert(new GUIState(question, answers, final_answer));
+end;
+
+
+rule "Fight place"
+    when
+        t: GUIState(trescPytania == "Would you rather fight on the ground or while flying through space?" && odpowiedz == null);
+    then
+        QuestionDialog dialog = new QuestionDialog(t.getTrescPytania(), t.getOpcje_odpowiedzi());
+        String selectedAnswer = dialog.showAndWait();
+        t.setOdpowiedz(selectedAnswer);
+        System.out.println("Selected answer: " + selectedAnswer);
+        update(t);  
+end
+
+
