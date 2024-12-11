@@ -22,7 +22,6 @@ end
 
 rule "Init"
     when
-        // Warunki inicjalizacyjne (jesli potrzebne)
     then
         String question = "What type of game are you looking for? Do you want to hone the ultimate warrior, or build a mighty nation?";
         List<String> answers = new ArrayList<>();
