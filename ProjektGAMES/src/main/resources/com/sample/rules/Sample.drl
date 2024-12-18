@@ -39,16 +39,6 @@ rule "Init"
         insert(new GUIState(question, answers, final_answer));
 end
 
-rule "Game Type"
-    when
-        t: GUIState(trescPytania == "What type of game are you looking for? Do you want to hone the ultimate warrior, or build a mighty nation?" && odpowiedz == null);
-    then
-        QuestionDialog dialog = new QuestionDialog(t.getTrescPytania(), t.getOpcje_odpowiedzi());
-        String selectedAnswer = dialog.showAndWait();
-        t.setOdpowiedz(selectedAnswer);
-        System.out.println("Selected answer: " + selectedAnswer);
-        update(t);
-end
 
 rule "Shooter"
 	when
@@ -89,9 +79,9 @@ rule "FantasyRPG"
 end;
 
 
-rule "WoW"
+rule "AnwserRegister"
 	when
-		t: GUIState(trescPytania == "Have you played World of Warcraft?" && odpowiedz == null);
+		t: GUIState(odpowiedz == null);
 	then
 		QuestionDialog dialog = new QuestionDialog(t.getTrescPytania(), t.getOpcje_odpowiedzi());
         String selectedAnswer = dialog.showAndWait();
@@ -121,17 +111,6 @@ rule "WoWYes"
         insert(new GUIState(question, answers, final_answer));
 end;
 
-rule "SweetingRPG"
-	when
-		t: GUIState(trescPytania == "Are you looking for a game you can casually pick up now and then, or something more involved?" && odpowiedz == null);
-	then
-		QuestionDialog dialog = new QuestionDialog(t.getTrescPytania(), t.getOpcje_odpowiedzi());
-        String selectedAnswer = dialog.showAndWait();
-        t.setOdpowiedz(selectedAnswer);
-        System.out.println("Selected answer: " + selectedAnswer);
-        update(t);
-end;
-
 rule "CasualRPG"
 	when
 		t: GUIState(odpowiedz == "Casual" && trescPytania == "Are you looking for a game you can casually pick up now and then, or something more involved?");
@@ -158,16 +137,6 @@ rule "InvolvedRPG"
         insert(new GUIState(question, answers, final_answer));
 end
 
-rule "Age"
-	when
-		t: GUIState(trescPytania == "How many digits are in your age?" && odpowiedz == null);
-	then
-		QuestionDialog dialog = new QuestionDialog(t.getTrescPytania(), t.getOpcje_odpowiedzi());
-        String selectedAnswer = dialog.showAndWait();
-        t.setOdpowiedz(selectedAnswer);
-        System.out.println("Selected answer: " + selectedAnswer);
-        update(t);
-end;
 
 rule "Young"
 	when
@@ -189,16 +158,6 @@ rule "Old"
         insert(new GUIState(question, answers, final_answer));
 end;	
 
-rule "AnimeEyes"
-	when
-		t: GUIState(trescPytania == "Do you like cute, wide eyed Anime Characters?" && odpowiedz == null);
-	then
-		QuestionDialog dialog = new QuestionDialog(t.getTrescPytania(), t.getOpcje_odpowiedzi());
-        String selectedAnswer = dialog.showAndWait();
-        t.setOdpowiedz(selectedAnswer);
-        System.out.println("Selected answer: " + selectedAnswer);
-        update(t);
-end;
 
 rule "AnimeEyesNo"
 	when
@@ -212,16 +171,6 @@ rule "AnimeEyesNo"
         insert(new GUIState(question, answers, final_answer));
 end;
 
-rule "RpgNotAnimeScale"
-	when
-		t: GUIState(trescPytania == "Do you enjoy large scale battles with dozens or hundreds of players fighting each other?" && odpowiedz == null);
-	then
-		QuestionDialog dialog = new QuestionDialog(t.getTrescPytania(), t.getOpcje_odpowiedzi());
-        String selectedAnswer = dialog.showAndWait();
-        t.setOdpowiedz(selectedAnswer);
-        System.out.println("Selected answer: " + selectedAnswer);
-        update(t);
-end;
 
 rule "RpgNotAnimeScaleSmall"
 	when
@@ -235,16 +184,6 @@ rule "RpgNotAnimeScaleSmall"
         insert(new GUIState(question, answers, final_answer));
 end;
 
-rule "Pvp"
-	when
-		t: GUIState(trescPytania == "Are you looking for a game with and emphasis on player vs player (PvP) fighting?" && odpowiedz == null);
-	then
-		QuestionDialog dialog = new QuestionDialog(t.getTrescPytania(), t.getOpcje_odpowiedzi());
-        String selectedAnswer = dialog.showAndWait();
-        t.setOdpowiedz(selectedAnswer);
-        System.out.println("Selected answer: " + selectedAnswer);
-        update(t);
-end;
 
 rule "PvpYes"
 	when
@@ -258,16 +197,6 @@ rule "PvpYes"
         insert(new GUIState(question, answers, final_answer));
 end;
 
-rule "WoWLike"
-	when
-		t: GUIState(trescPytania == "Would you like to find a game as close as possible to World of Warcraft?" && odpowiedz == null);
-	then
-		QuestionDialog dialog = new QuestionDialog(t.getTrescPytania(), t.getOpcje_odpowiedzi());
-        String selectedAnswer = dialog.showAndWait();
-        t.setOdpowiedz(selectedAnswer);
-        System.out.println("Selected answer: " + selectedAnswer);
-        update(t);
-end;
 
 rule "WoWLikeYes"
 	when
@@ -290,16 +219,6 @@ rule "WoWLikeNo"
         insert(new GUIState(question, answers, final_answer));
 end;	
 
-rule "Features"
-	when
-		t: GUIState(trescPytania == "Which of these distinctive features appeals to you most?" && odpowiedz == null);
-	then
-		QuestionDialog dialog = new QuestionDialog(t.getTrescPytania(), t.getOpcje_odpowiedzi());
-        String selectedAnswer = dialog.showAndWait();
-        t.setOdpowiedz(selectedAnswer);
-        System.out.println("Selected answer: " + selectedAnswer);
-        update(t);
-end;
 
 rule "FeaturesA-P"
 	when
@@ -341,17 +260,6 @@ rule "PvpNo"
         insert(new GUIState(question, answers, final_answer));
 end;
 
-rule "DaD"
-	when
-		t: GUIState(trescPytania == "Are you looking for something based on the grand-daddy of RPGs, pen-and-paper Dungeons and Dragons? Or a more complex, involved combat system?" && odpowiedz == null);
-	then
-		QuestionDialog dialog = new QuestionDialog(t.getTrescPytania(), t.getOpcje_odpowiedzi());
-        String selectedAnswer = dialog.showAndWait();
-        t.setOdpowiedz(selectedAnswer);
-        System.out.println("Selected answer: " + selectedAnswer);
-        update(t);
-end;
-
 rule "DadNo"
 	when
 		t: GUIState(trescPytania == "Are you looking for something based on the grand-daddy of RPGs, pen-and-paper Dungeons and Dragons? Or a more complex, involved combat system?" && odpowiedz == "I want to perfect the art of crushing my enemies");
@@ -372,16 +280,6 @@ rule "DadYes"
         insert(new GUIState(question, answers, final_answer));
 end;
 
-rule "Requirements"
-	when
-		t: GUIState(trescPytania == "Do you want an old-school D&D game with low system requirements, or a cutting edge 3D D&D expierience?" && odpowiedz == null);
-	then
-		QuestionDialog dialog = new QuestionDialog(t.getTrescPytania(), t.getOpcje_odpowiedzi());
-        String selectedAnswer = dialog.showAndWait();
-        t.setOdpowiedz(selectedAnswer);
-        System.out.println("Selected answer: " + selectedAnswer);
-        update(t);
-end;
 
 rule "RequirementsOld"
 	when
@@ -411,16 +309,6 @@ rule "RpgNotAnimeScaleBIG"
         insert(new GUIState(question, answers, final_answer));
 end;
 
-rule "LoTR"
-	when
-		t: GUIState(trescPytania == "Did you like the \"Lord of the Rings\" trilogy?" && odpowiedz == null);
-	then
-		QuestionDialog dialog = new QuestionDialog(t.getTrescPytania(), t.getOpcje_odpowiedzi());
-        String selectedAnswer = dialog.showAndWait();
-        t.setOdpowiedz(selectedAnswer);
-        System.out.println("Selected answer: " + selectedAnswer);
-        update(t);
-end;
 
 rule "LoTRNO"
 	when
@@ -434,16 +322,6 @@ rule "LoTRNO"
         insert(new GUIState(question, answers, final_answer));
 end;
 
-rule "QorP"
-	when
-		t: GUIState(trescPytania == "Do you prefer a game with strong quests, or awesome pets?" && odpowiedz == null);
-	then
-		QuestionDialog dialog = new QuestionDialog(t.getTrescPytania(), t.getOpcje_odpowiedzi());
-        String selectedAnswer = dialog.showAndWait();
-        t.setOdpowiedz(selectedAnswer);
-        System.out.println("Selected answer: " + selectedAnswer);
-        update(t);
-end;
 
 rule "Quests"
 	when
@@ -482,17 +360,6 @@ rule "AnimeEyesYes"
 end;
 
 
-rule "Minions"
-	when
-		t: GUIState(trescPytania == "Would you like to have magical servants who do the drudge work of colecting materials and crafting for you?" && odpowiedz == null);
-	then
-		QuestionDialog dialog = new QuestionDialog(t.getTrescPytania(), t.getOpcje_odpowiedzi());
-        String selectedAnswer = dialog.showAndWait();
-        t.setOdpowiedz(selectedAnswer);
-        System.out.println("Selected answer: " + selectedAnswer);
-        update(t);
-end;
-
 rule "Minions Yes"
 	when
 		t: GUIState(trescPytania == "Would you like to have magical servants who do the drudge work of colecting materials and crafting for you?" && odpowiedz == "Yes please!");
@@ -513,16 +380,6 @@ rule "Minions No"
         insert(new GUIState(question, answers, final_answer));
 end;
 
-rule "Commitments"
-	when
-		t: GUIState(trescPytania == "How are you at making commitments" && odpowiedz == null);
-	then
-		QuestionDialog dialog = new QuestionDialog(t.getTrescPytania(), t.getOpcje_odpowiedzi());
-        String selectedAnswer = dialog.showAndWait();
-        t.setOdpowiedz(selectedAnswer);
-        System.out.println("Selected answer: " + selectedAnswer);
-        update(t);
-end;
 
 rule "CommitmentsYes"
 	when
@@ -540,16 +397,6 @@ rule "CommitmentsNo"
         insert(new Game(game));
 end;
 
-rule "SweetingRPGOcc"
-	when
-		t: GUIState(trescPytania == "But would you still like the option for more intense play when you have the time for it?" && odpowiedz == null);
-	then
-		QuestionDialog dialog = new QuestionDialog(t.getTrescPytania(), t.getOpcje_odpowiedzi());
-        String selectedAnswer = dialog.showAndWait();
-        t.setOdpowiedz(selectedAnswer);
-        System.out.println("Selected answer: " + selectedAnswer);
-        update(t);
-end;
 
 rule "SometimesSweeting"
 	when
@@ -570,17 +417,6 @@ rule "NeverSweetings"
         String final_answer = null;
         insert(new GUIState(question, answers, final_answer));
 end
-
-rule "CasualGroup"
-	when
-		t: GUIState(trescPytania == "Would you like more social features for a group play, or a challenging game world to satisfy the solo player?" && odpowiedz == null);
-	then
-		QuestionDialog dialog = new QuestionDialog(t.getTrescPytania(), t.getOpcje_odpowiedzi());
-        String selectedAnswer = dialog.showAndWait();
-        t.setOdpowiedz(selectedAnswer);
-        System.out.println("Selected answer: " + selectedAnswer);
-        update(t);
-end;
 
 rule "SoloRpgCasual"
 	when
@@ -612,16 +448,6 @@ rule "Science fiction"
         insert(new GUIState(question, answers, final_answer));
 end;
 
-rule "MissionsPlace"
-	when
-		t: GUIState(trescPytania == "Would you like to go on ground-based missions or stick to your spaceship?" && odpowiedz == null);
-	then
-		QuestionDialog dialog = new QuestionDialog(t.getTrescPytania(), t.getOpcje_odpowiedzi());
-        String selectedAnswer = dialog.showAndWait();
-        t.setOdpowiedz(selectedAnswer);
-        System.out.println("Selected answer: " + selectedAnswer);
-        update(t);
-end;
 
 rule "Scotty"
 	when
@@ -636,7 +462,7 @@ rule "Outer space"
 	when
 		t: GUIState(odpowiedz == "I'll stick with outer space" && trescPytania == "Would you like to go on ground-based missions or stick to your spaceship?")
 	then
-		String question = "Would you like a game that's easy to pick up, or one that takes some getting used to but is huge,epic,involed";
+		String question = "Would you like a game that's easy to pick up, or one that takes some getting used to but is huge, epic and involed";
         List<String> answers = new ArrayList<>();
         answers.add("Easy to get the hang of");
         answers.add("The more epic, the better");
@@ -644,20 +470,10 @@ rule "Outer space"
         insert(new GUIState(question, answers, final_answer));
 end;
 
-rule "GameScale"
-	when
-		t: GUIState(trescPytania == "Would you like a game that's easy to pick up, or one that takes some getting used to but is huge,epic,involed" && odpowiedz == null);
-	then
-		QuestionDialog dialog = new QuestionDialog(t.getTrescPytania(), t.getOpcje_odpowiedzi());
-        String selectedAnswer = dialog.showAndWait();
-        t.setOdpowiedz(selectedAnswer);
-        System.out.println("Selected answer: " + selectedAnswer);
-        update(t);
-end;
 
 rule "Easy to pick up"
 	when
-		t: GUIState(odpowiedz == "Easy to get the hang of" && trescPytania == "Would you like a game that's easy to pick up, or one that takes some getting used to but is huge,epic,involed")
+		t: GUIState(odpowiedz == "Easy to get the hang of" && trescPytania == "Would you like a game that's easy to pick up, or one that takes some getting used to but is huge, epic and involed")
 	then
 		String game = "DARK ORBIT";
         insert(new Game(game));
@@ -665,22 +481,11 @@ end
 	
 rule "Epic game"
 	when
-		t: GUIState(odpowiedz == "The more epic, the better" && trescPytania == "Would you like a game that's easy to pick up, or one that takes some getting used to but is huge,epic,involed");
+		t: GUIState(odpowiedz == "The more epic, the better" && trescPytania == "Would you like a game that's easy to pick up, or one that takes some getting used to but is huge, epic and involed");
 	then
 		String game = "EVE ONLINE";
         insert(new Game(game));
 end
-
-rule "genres"
-	when
-		t: GUIState(trescPytania == "What genre would you like? Swords and sorcery, starships, superheroes or something else?" && odpowiedz == null);
-	then
-		QuestionDialog dialog = new QuestionDialog(t.getTrescPytania(), t.getOpcje_odpowiedzi());
-        String selectedAnswer = dialog.showAndWait();
-        t.setOdpowiedz(selectedAnswer);
-        System.out.println("Selected answer: " + selectedAnswer);
-        update(t);
-end;
 
 
 rule "smth completely diff"
@@ -689,30 +494,29 @@ rule "smth completely diff"
 	then
 		String question = "Is being a vampire-hunting werewolf strange enough for you?";
         List<String> answers = new ArrayList<>();
-        answers.add("YES");
-        answers.add("NO");
+        answers.add("Yes");
+        answers.add("No");
         String final_answer = null;
         insert(new GUIState(question, answers, final_answer));
 end;
 
-rule "vampires"
-	when
-		t: GUIState(trescPytania == "Is being a vampire-hunting werewolf strange enough for you?" && odpowiedz == null);
-	then
-		QuestionDialog dialog = new QuestionDialog(t.getTrescPytania(), t.getOpcje_odpowiedzi());
-        String selectedAnswer = dialog.showAndWait();
-        t.setOdpowiedz(selectedAnswer);
-        System.out.println("Selected answer: " + selectedAnswer);
-        update(t);
-end;
 
 rule "vampiresY"
 	when
-		t: GUIState(odpowiedz == "YES" && trescPytania == "Is being a vampire-hunting werewolf strange enough for you?");
+		t: GUIState(odpowiedz == "Yes" && trescPytania == "Is being a vampire-hunting werewolf strange enough for you?");
 	then
 		String game = "BITEFIGHT";
         insert(new Game(game));
 end;
+
+rule "vampiresN"
+	when
+		t: GUIState(odpowiedz == "No" && trescPytania == "Is being a vampire-hunting werewolf strange enough for you?");
+	then
+		String game = "GLITCH";
+        insert(new Game(game));
+end;
+
 
 rule "superheroes"
 	when
@@ -720,26 +524,16 @@ rule "superheroes"
 	then
 		String question = "Are you old enough to remember when \"The Incredibles\" came out?";
         List<String> answers = new ArrayList<>();
-        answers.add("YES");
-        answers.add("NO");
+        answers.add("Yes");
+        answers.add("No");
         String final_answer = null;
         insert(new GUIState(question, answers, final_answer));
 end;
 
-rule "TheIncredibles"
-	when
-		t: GUIState(trescPytania == "Are you old enough to remember when \"The Incredibles\" came out?" && odpowiedz == null);
-	then
-		QuestionDialog dialog = new QuestionDialog(t.getTrescPytania(), t.getOpcje_odpowiedzi());
-        String selectedAnswer = dialog.showAndWait();
-        t.setOdpowiedz(selectedAnswer);
-        System.out.println("Selected answer: " + selectedAnswer);
-        update(t);
-end;
 
 rule "TheIncrediblesY"
 	when
-		t: GUIState(odpowiedz == "YES" && trescPytania == "Are you old enough to remember when \"The Incredibles\" came out?");
+		t: GUIState(odpowiedz == "Yes" && trescPytania == "Are you old enough to remember when \"The Incredibles\" came out?");
 	then
 		String game = "DC UNIVERSE ONLINE";
         insert(new Game(game));
@@ -748,7 +542,7 @@ end;
 
 rule "TheIncrediblesN"
 	when
-		t: GUIState(odpowiedz == "NO" && trescPytania == "Are you old enough to remember when \"The Incredibles\" came out?");
+		t: GUIState(odpowiedz == "No" && trescPytania == "Are you old enough to remember when \"The Incredibles\" came out?");
 	then
 		String game = "SUPERHERO SQUAD ONLINE";
         insert(new Game(game));
@@ -766,23 +560,12 @@ rule "Virtualworlds"
         insert(new GUIState(question, answers, final_answer));
 end;
 
-rule "WorldBuilt"
-	when
-		t: GUIState(trescPytania == "Would you like a world with games built in, or would you like a completely freeform experience?" && odpowiedz == null);
-	then
-        QuestionDialog dialog = new QuestionDialog(t.getTrescPytania(), t.getOpcje_odpowiedzi());
-        String selectedAnswer = dialog.showAndWait();
-        t.setOdpowiedz(selectedAnswer);
-        System.out.println("Selected answer: " + selectedAnswer);
-        update(t);
-end;
-
 
 rule "Strategy"
 	when
 		t: GUIState(odpowiedz == "STRATEGY" &&  trescPytania == "What type of game are you looking for? Do you want to hone the ultimate warrior, or build a mighty nation?");
 	then
-		String question = "Would you like your wars and alliances in a fantasy setting the real world, or 'the family'?";
+		String question = "Would you like your wars and alliances in a fantasy setting, the real world, or 'the family'?";
         List<String> answers = new ArrayList<>();
         answers.add("Fantasy");
         answers.add("Historical");
@@ -791,20 +574,9 @@ rule "Strategy"
         insert(new GUIState(question, answers, final_answer));
 end;
 
-rule "Setting"
-    when
-        t: GUIState(trescPytania == "Would you like your wars and alliances in a fantasy setting the real world, or 'the family'?" && odpowiedz == null);
-    then
-        QuestionDialog dialog = new QuestionDialog(t.getTrescPytania(), t.getOpcje_odpowiedzi());
-        String selectedAnswer = dialog.showAndWait();
-        t.setOdpowiedz(selectedAnswer);
-        System.out.println("Selected answer: " + selectedAnswer);
-        update(t);  
-end
-
 rule "Mafia"
 	when
-		t: GUIState(odpowiedz == "Mafia" && trescPytania == "Would you like your wars and alliances in a fantasy setting the real world, or 'the family'?");
+		t: GUIState(odpowiedz == "Mafia" && trescPytania == "Would you like your wars and alliances in a fantasy setting, the real world, or 'the family'?");
 	then
 		String game = "GODFATHER: FIVE FAMILIES";
         insert(new Game(game));
@@ -812,7 +584,7 @@ end;
 
 rule "Historical"
 	when
-		t: GUIState(odpowiedz == "Historical" && trescPytania == "Would you like your wars and alliances in a fantasy setting the real world, or 'the family'?");
+		t: GUIState(odpowiedz == "Historical" && trescPytania == "Would you like your wars and alliances in a fantasy setting, the real world, or 'the family'?");
 	then
 		String question = "Would you like a casual game that you can put a few minutes into now and then, or a more involved game that might become an obsession?";
         List<String> answers = new ArrayList<>();
@@ -824,7 +596,7 @@ end;
 
 rule "Fantasy"
 	when
-		t: GUIState(odpowiedz == "Fantasy" && trescPytania == "Would you like your wars and alliances in a fantasy setting the real world, or 'the family'?");
+		t: GUIState(odpowiedz == "Fantasy" && trescPytania == "Would you like your wars and alliances in a fantasy setting, the real world, or 'the family'?");
 	then
 		String question = "Would you like a game with RPG elements such as dungeon exploration, or do you want to stick with straight-up strategy?";
         List<String> answers = new ArrayList<>();
@@ -832,17 +604,6 @@ rule "Fantasy"
         answers.add("Just strategy, please");
         String final_answer = null;
         insert(new GUIState(question, answers, final_answer));
-end;
-
-rule "Dungeons"
-	when
-		t: GUIState(trescPytania == "Would you like a game with RPG elements such as dungeon exploration, or do you want to stick with straight-up strategy?" && odpowiedz == null);
-	then
-        QuestionDialog dialog = new QuestionDialog(t.getTrescPytania(), t.getOpcje_odpowiedzi());
-        String selectedAnswer = dialog.showAndWait();
-        t.setOdpowiedz(selectedAnswer);
-        System.out.println("Selected answer: " + selectedAnswer);
-        update(t);  
 end;
 
 rule "CALL OF GODS"
@@ -862,17 +623,6 @@ rule "GREPOLIS"
 end;
 
 
-rule "Sweeting"
-	when
-		t: GUIState(trescPytania == "Would you like a casual game that you can put a few minutes into now and then, or a more involved game that might become an obsession?" && odpowiedz == null);
-	then
-        QuestionDialog dialog = new QuestionDialog(t.getTrescPytania(), t.getOpcje_odpowiedzi());
-        String selectedAnswer = dialog.showAndWait();
-        t.setOdpowiedz(selectedAnswer);
-        System.out.println("Selected answer: " + selectedAnswer);
-        update(t);  
-end;
-
 rule "Involved"
 	when
 		t: GUIState(odpowiedz == "Involved" && trescPytania == "Would you like a casual game that you can put a few minutes into now and then, or a more involved game that might become an obsession?");
@@ -885,16 +635,6 @@ rule "Involved"
         insert(new GUIState(question, answers, final_answer));
 end;
 
-rule "SoloOrFriends"
-    when
-        t: GUIState(trescPytania == "Do you want a game that can be played solo, or one that puts an emphasis on forming alliances?" && odpowiedz == null);
-    then
-        QuestionDialog dialog = new QuestionDialog(t.getTrescPytania(), t.getOpcje_odpowiedzi());
-        String selectedAnswer = dialog.showAndWait();
-        t.setOdpowiedz(selectedAnswer);
-        System.out.println("Selected answer: " + selectedAnswer);
-        update(t);  
-end
 
 rule "Solo"
 	when
@@ -924,16 +664,6 @@ rule "Casual"
         insert(new GUIState(question, answers, final_answer));
 end;
 
-rule "TacticsOrStrategic"
-    when
-        t: GUIState(trescPytania == "Do you prefer higher level strategic control of a battle, or real time tactical control over your troops?" && odpowiedz == null);
-    then
-        QuestionDialog dialog = new QuestionDialog(t.getTrescPytania(), t.getOpcje_odpowiedzi());
-        String selectedAnswer = dialog.showAndWait();
-        t.setOdpowiedz(selectedAnswer);
-        System.out.println("Selected answer: " + selectedAnswer);
-        update(t);  
-end
 
 rule "Tactics"
 	when
@@ -963,17 +693,6 @@ rule "Built in"
         insert(new GUIState(question, answers, final_answer));
 end;
 
-rule "Blocks or Legos"
-    when
-        t: GUIState(trescPytania == "Which do you prefer to build with: blocks or legos?" && odpowiedz == null);
-    then
-        QuestionDialog dialog = new QuestionDialog(t.getTrescPytania(), t.getOpcje_odpowiedzi());
-        String selectedAnswer = dialog.showAndWait();
-        t.setOdpowiedz(selectedAnswer);
-        System.out.println("Selected answer: " + selectedAnswer);
-        update(t);  
-end
-
 
 rule "Open world"
 	when
@@ -986,17 +705,6 @@ rule "Open world"
         String final_answer = null;
         insert(new GUIState(question, answers, final_answer));
 end;
-
-rule "Chat or create"
-    when
-        t: GUIState(trescPytania == "Are you looking mostly to chat and make new friends, or do you want to create things, too?" && odpowiedz == null);
-    then
-        QuestionDialog dialog = new QuestionDialog(t.getTrescPytania(), t.getOpcje_odpowiedzi());
-        String selectedAnswer = dialog.showAndWait();
-        t.setOdpowiedz(selectedAnswer);
-        System.out.println("Selected answer: " + selectedAnswer);
-        update(t);  
-end
 
 
 rule "Lego"
@@ -1031,16 +739,6 @@ rule "2life"
         insert(new Game(game));
 end;
 
-rule "Fight place"
-    when
-        t: GUIState(trescPytania == "Would you rather fight on the ground or while flying through space?" && odpowiedz == null);
-    then
-        QuestionDialog dialog = new QuestionDialog(t.getTrescPytania(), t.getOpcje_odpowiedzi());
-        String selectedAnswer = dialog.showAndWait();
-        t.setOdpowiedz(selectedAnswer);
-        System.out.println("Selected answer: " + selectedAnswer);
-        update(t);  
-end;
 
 rule "Flying"
 	when
@@ -1052,17 +750,6 @@ rule "Flying"
         answers.add("Big Battles");
         String final_answer = null;
         insert(new GUIState(question, answers, final_answer));
-end;
-
-rule "Scale of battles"
-	when
-		t: GUIState(trescPytania == "What means more to you, enormous large scale battles, or the ability to take precise control of your ship's every move?" && odpowiedz == null)
-	then
-		QuestionDialog dialog = new QuestionDialog(t.getTrescPytania(), t.getOpcje_odpowiedzi());
-        String selectedAnswer = dialog.showAndWait();
-        t.setOdpowiedz(selectedAnswer);
-        System.out.println("Selected answer: " + selectedAnswer);
-        update(t);
 end;
 
 
@@ -1094,16 +781,6 @@ rule "Ground"
         insert(new GUIState(question, answers, final_answer));
 end;
 
-rule "MonstersOrMilitary"
-	when
-		t: GUIState(trescPytania == "Who would you rather fight, the military or monsters?" && odpowiedz == null)
-	then
-		QuestionDialog dialog = new QuestionDialog(t.getTrescPytania(), t.getOpcje_odpowiedzi());
-        String selectedAnswer = dialog.showAndWait();
-        t.setOdpowiedz(selectedAnswer);
-        System.out.println("Selected answer: " + selectedAnswer);
-        update(t);
-end;
 
 rule "Military"
 	when
@@ -1117,16 +794,6 @@ rule "Military"
         insert(new GUIState(question, answers, final_answer));
 end;
 
-rule "TankOrSoldier"
-	when
-		t: GUIState(trescPytania == "Do you see your self as a World War II vintage tank, or deadly cartoon soldier?" && odpowiedz == null)
-	then
-		QuestionDialog dialog = new QuestionDialog(t.getTrescPytania(), t.getOpcje_odpowiedzi());
-        String selectedAnswer = dialog.showAndWait();
-        t.setOdpowiedz(selectedAnswer);
-        System.out.println("Selected answer: " + selectedAnswer);
-        update(t);
-end;
 
 rule "Tank"
 	when
@@ -1157,16 +824,6 @@ rule "Monsters"
         insert(new GUIState(question, answers, final_answer));
 end;
 
-rule "WerewovesOrMummies"
-	when
-		t: GUIState(trescPytania == "Mummies or Werewolves?" && odpowiedz == null)
-	then
-		QuestionDialog dialog = new QuestionDialog(t.getTrescPytania(), t.getOpcje_odpowiedzi());
-        String selectedAnswer = dialog.showAndWait();
-        t.setOdpowiedz(selectedAnswer);
-        System.out.println("Selected answer: " + selectedAnswer);
-        update(t);
-end;
 
 rule "Mummies"
 	when
