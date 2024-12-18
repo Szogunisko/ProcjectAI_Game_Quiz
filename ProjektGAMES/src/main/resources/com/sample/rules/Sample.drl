@@ -20,6 +20,11 @@ declare GUIState
     odpowiedz: String
 end
 
+declare Game
+    title: String
+end
+
+
 
 rule "Init"
     when
@@ -100,7 +105,7 @@ rule "WowNO"
 		t: GUIState(odpowiedz == "No?! 10 million players agree: this is the place to start." && trescPytania == "Have you played World of Warcraft?")
 	then
 		String game = "WORLD OF WARCRAFT";
-        FinalGame dialog = new FinalGame(game);
+		insert(new Game(game));
 end;
 
 
@@ -169,7 +174,7 @@ rule "Young"
 		t: GUIState(trescPytania == "How many digits are in your age?" && (odpowiedz == "1" || odpowiedz == "Not sure"));
 	then
 		String game = "WIZARD 101";
-        FinalGame dialog = new FinalGame(game);
+		insert(new Game(game));
 end;
 
 rule "Old"
@@ -269,7 +274,7 @@ rule "WoWLikeYes"
 		t: GUIState(trescPytania == "Would you like to find a game as close as possible to World of Warcraft?" && odpowiedz == "Yes");
 	then
 		String game = "RUNES OF MAGIC";
-        FinalGame dialog = new FinalGame(game);
+        insert(new Game(game));
 end;
 
 rule "WoWLikeNo"
@@ -301,7 +306,7 @@ rule "FeaturesA-P"
 		t: GUIState(trescPytania == "Which of these distinctive features appeals to you most?" && odpowiedz == "Auto-pilot mode to grind for you");
 	then
 		String game = "CRYSTAL SAGA";
-        FinalGame dialog = new FinalGame(game);
+        insert(new Game(game));
 end;
 
 rule "FeaturesGOD"
@@ -309,7 +314,7 @@ rule "FeaturesGOD"
 		t: GUIState(trescPytania == "Which of these distinctive features appeals to you most?" && odpowiedz == "The chance to become a god");
 	then
 		String game = "FORSAKEN WORLD";
-        FinalGame dialog = new FinalGame(game);
+        insert(new Game(game));
 end;
 
 rule "FeaturesHnS"
@@ -317,7 +322,7 @@ rule "FeaturesHnS"
 		t: GUIState(trescPytania == "Which of these distinctive features appeals to you most?" && odpowiedz == "Hack-n-slash dungeon diving, like diablo");
 	then
 		String game = "DRAKENSANG";
-        FinalGame dialog = new FinalGame(game);
+        insert(new Game(game));
 end;
 
 
@@ -352,7 +357,7 @@ rule "DadNo"
 		t: GUIState(trescPytania == "Are you looking for something based on the grand-daddy of RPGs, pen-and-paper Dungeons and Dragons? Or a more complex, involved combat system?" && odpowiedz == "I want to perfect the art of crushing my enemies");
 	then
 		String game = "AGE OF CONAN";
-        FinalGame dialog = new FinalGame(game);
+        insert(new Game(game));
 end;
 
 rule "DadYes"
@@ -383,7 +388,7 @@ rule "RequirementsOld"
 		t: GUIState(trescPytania == "Do you want an old-school D&D game with low system requirements, or a cutting edge 3D D&D expierience?" && odpowiedz == "Old-school");
 	then
 		String game = "DARK SWORDS";
-        FinalGame dialog = new FinalGame(game);
+        insert(new Game(game));
 end;
 
 rule "RequirementsCutting"
@@ -391,7 +396,7 @@ rule "RequirementsCutting"
 		t: GUIState(trescPytania == "Do you want an old-school D&D game with low system requirements, or a cutting edge 3D D&D expierience?" && odpowiedz == "Cutting edge");
 	then
 		String game = "DUNGEONS AND DRAGONS ONLINE";
-        FinalGame dialog = new FinalGame(game);
+        insert(new Game(game));
 end;
 
 rule "RpgNotAnimeScaleBIG"
@@ -445,7 +450,7 @@ rule "Quests"
 		t: GUIState(trescPytania == "Do you prefer a game with strong quests, or awesome pets?" && odpowiedz == "Quests");
 	then
 		String game = "4STORY";
-        FinalGame dialog = new FinalGame(game);
+        insert(new Game(game));
 end;
 
 rule "Pets"
@@ -453,7 +458,7 @@ rule "Pets"
 		t: GUIState(trescPytania == "Do you prefer a game with strong quests, or awesome pets?" && odpowiedz == "Pets");
 	then
 		String game = "AIKA";
-        FinalGame dialog = new FinalGame(game);
+        insert(new Game(game));
 end;
 
 rule "LoTRFan"
@@ -461,7 +466,7 @@ rule "LoTRFan"
 		t: GUIState(trescPytania == "Did you like the \"Lord of the Rings\" trilogy?" && odpowiedz == "Yes");
 	then
 		String game = "LORD OF THE RINGS ONLINE";
-        FinalGame dialog = new FinalGame(game);
+        insert(new Game(game));
 end;
 
 rule "AnimeEyesYes"
@@ -493,7 +498,7 @@ rule "Minions Yes"
 		t: GUIState(trescPytania == "Would you like to have magical servants who do the drudge work of colecting materials and crafting for you?" && odpowiedz == "Yes please!");
 	then
 		String game = "GRAND FANTASIA";
-        FinalGame dialog = new FinalGame(game);
+        insert(new Game(game));
 end;
 
 rule "Minions No"
@@ -524,7 +529,7 @@ rule "CommitmentsYes"
 		t: GUIState(trescPytania == "How are you at making commitments" && odpowiedz == "Great - I'd like a game with an emphasis on forging friendships and marriages");
 	then
 		String game = "DREAM OF MIRROR";
-        FinalGame dialog = new FinalGame(game);
+        insert(new Game(game));
 end;
 
 rule "CommitmentsNo"
@@ -532,7 +537,7 @@ rule "CommitmentsNo"
 		t: GUIState(trescPytania == "How are you at making commitments" && odpowiedz == "Not so great - I'd like a game where I can switch my class at any time");
 	then
 		String game = "EDEN ETERNAL";
-        FinalGame dialog = new FinalGame(game);
+        insert(new Game(game));
 end;
 
 rule "SweetingRPGOcc"
@@ -551,7 +556,7 @@ rule "SometimesSweeting"
 		t: GUIState(odpowiedz == "Yes" && trescPytania=="But would you still like the option for more intense play when you have the time for it?")
 	then
 		String game = "SHAIYA";
-        FinalGame dialog = new FinalGame(game);
+        insert(new Game(game));
 end;
 
 rule "NeverSweetings"
@@ -582,7 +587,7 @@ rule "SoloRpgCasual"
 		t: GUIState(odpowiedz == "Solo" && trescPytania=="Would you like more social features for a group play, or a challenging game world to satisfy the solo player?")
 	then
 		String game = "ADVENTURE QUEST WORLDS";
-        FinalGame dialog = new FinalGame(game);
+        insert(new Game(game));
 end;
 
 rule "GroupRpgCasual"
@@ -590,7 +595,7 @@ rule "GroupRpgCasual"
 		t: GUIState(odpowiedz == "Social" && trescPytania=="Would you like more social features for a group play, or a challenging game world to satisfy the solo player?")
 	then
 		String game = "DRAGON FABLE";
-        FinalGame dialog = new FinalGame(game);
+        insert(new Game(game));
 end;
 
 
@@ -623,7 +628,7 @@ rule "Scotty"
 		t: GUIState(odpowiedz == "Beam me down, Scotty" && trescPytania == "Would you like to go on ground-based missions or stick to your spaceship?")
 	then
 		String game = "STAR TREK ONLINE";
-        FinalGame dialog = new FinalGame(game);
+        insert(new Game(game));
 end;
 
 
@@ -655,7 +660,7 @@ rule "Easy to pick up"
 		t: GUIState(odpowiedz == "Easy to get the hang of" && trescPytania == "Would you like a game that's easy to pick up, or one that takes some getting used to but is huge,epic,involed")
 	then
 		String game = "DARK ORBIT";
-        FinalGame dialog = new FinalGame(game);
+        insert(new Game(game));
 end
 	
 rule "Epic game"
@@ -663,7 +668,7 @@ rule "Epic game"
 		t: GUIState(odpowiedz == "The more epic, the better" && trescPytania == "Would you like a game that's easy to pick up, or one that takes some getting used to but is huge,epic,involed");
 	then
 		String game = "EVE ONLINE";
-        FinalGame dialog = new FinalGame(game);
+        insert(new Game(game));
 end
 
 rule "genres"
@@ -706,7 +711,7 @@ rule "vampiresY"
 		t: GUIState(odpowiedz == "YES" && trescPytania == "Is being a vampire-hunting werewolf strange enough for you?");
 	then
 		String game = "BITEFIGHT";
-        FinalGame dialog = new FinalGame(game);
+        insert(new Game(game));
 end;
 
 rule "superheroes"
@@ -737,7 +742,7 @@ rule "TheIncrediblesY"
 		t: GUIState(odpowiedz == "YES" && trescPytania == "Are you old enough to remember when \"The Incredibles\" came out?");
 	then
 		String game = "DC UNIVERSE ONLINE";
-        FinalGame dialog = new FinalGame(game);
+        insert(new Game(game));
 end;
 
 
@@ -746,7 +751,7 @@ rule "TheIncrediblesN"
 		t: GUIState(odpowiedz == "NO" && trescPytania == "Are you old enough to remember when \"The Incredibles\" came out?");
 	then
 		String game = "SUPERHERO SQUAD ONLINE";
-        FinalGame dialog = new FinalGame(game);
+        insert(new Game(game));
 end;
 
 rule "Virtualworlds"
@@ -802,7 +807,7 @@ rule "Mafia"
 		t: GUIState(odpowiedz == "Mafia" && trescPytania == "Would you like your wars and alliances in a fantasy setting the real world, or 'the family'?");
 	then
 		String game = "GODFATHER: FIVE FAMILIES";
-        FinalGame dialog = new FinalGame(game);
+        insert(new Game(game));
 end;
 
 rule "Historical"
@@ -845,7 +850,7 @@ rule "CALL OF GODS"
 		t: GUIState(odpowiedz == "RPG elements" && trescPytania == "Would you like a game with RPG elements such as dungeon exploration, or do you want to stick with straight-up strategy?");
 	then
 		String game = "CALL OF GODS";
-        FinalGame dialog = new FinalGame(game);
+        insert(new Game(game));
 end;
 
 rule "GREPOLIS"
@@ -853,7 +858,7 @@ rule "GREPOLIS"
 		t: GUIState(odpowiedz == "Just strategy, please" && trescPytania == "Would you like a game with RPG elements such as dungeon exploration, or do you want to stick with straight-up strategy?");
 	then
 		String game = "GREPOLIS";
-        FinalGame dialog = new FinalGame(game);
+        insert(new Game(game));
 end;
 
 
@@ -896,7 +901,7 @@ rule "Solo"
 		t: GUIState(odpowiedz == "It's all me" && trescPytania == "Do you want a game that can be played solo, or one that puts an emphasis on forming alliances?");
 	then
 		String game = "CASTLE EMPIRE";
-        FinalGame dialog = new FinalGame(game);
+        insert(new Game(game));
 end;
 
 rule "Friends"
@@ -904,7 +909,7 @@ rule "Friends"
 		t: GUIState(odpowiedz == "You can't conquer the world without friends" && trescPytania == "Do you want a game that can be played solo, or one that puts an emphasis on forming alliances?");
 	then
 		String game = "TRAVIAN";
-        FinalGame dialog = new FinalGame(game);
+        insert(new Game(game));
 end;
 
 rule "Casual"
@@ -935,7 +940,7 @@ rule "Tactics"
 		t: GUIState(odpowiedz == "Real time Tactics" && trescPytania == "Do you prefer higher level strategic control of a battle, or real time tactical control over your troops?");
 	then
 		String game = "1100 AD";
-        FinalGame dialog = new FinalGame(game);
+        insert(new Game(game));
 end;
 
 rule "Strategic"
@@ -943,7 +948,7 @@ rule "Strategic"
 		t: GUIState(odpowiedz == "Strategic Control" && trescPytania == "Do you prefer higher level strategic control of a battle, or real time tactical control over your troops?");
 	then
 		String game = "TRIBAL WARS";
-        FinalGame dialog = new FinalGame(game);
+        insert(new Game(game));
 end;
 
 rule "Built in"
@@ -999,7 +1004,7 @@ rule "Lego"
 		t: GUIState(odpowiedz == "Legos" && trescPytania == "Which do you prefer to build with: blocks or legos?");
 	then
 		String game = "ROBLOX";
-        FinalGame dialog = new FinalGame(game);
+        insert(new Game(game));
 end;
 
 rule "Blocks"
@@ -1007,7 +1012,7 @@ rule "Blocks"
 		t: GUIState(odpowiedz == "Blocks" && trescPytania == "Which do you prefer to build with: blocks or legos?");
 	then
 		String game = "MINECRAFT CLASSIC";
-        FinalGame dialog = new FinalGame(game);
+        insert(new Game(game));
 end;
 
 rule "Imvu"
@@ -1015,7 +1020,7 @@ rule "Imvu"
 		t: GUIState(odpowiedz == "Chat" && trescPytania == "Are you looking mostly to chat and make new friends, or do you want to create things, too?");
 	then
 		String game = "IMVU";
-        FinalGame dialog = new FinalGame(game);
+        insert(new Game(game));
 end;
 
 rule "2life"
@@ -1023,7 +1028,7 @@ rule "2life"
 		t: GUIState(odpowiedz == "Create" && trescPytania == "Are you looking mostly to chat and make new friends, or do you want to create things, too?");
 	then
 		String game = "Second Life";
-        FinalGame dialog = new FinalGame(game);
+        insert(new Game(game));
 end;
 
 rule "Fight place"
@@ -1066,7 +1071,7 @@ rule "PreciseControl"
 		t: GUIState(odpowiedz == "Precise control" && trescPytania == "What means more to you, enormous large scale battles, or the ability to take precise control of your ship's every move?")
 	then
 		String game = "BATTLESTAR GALACTICA";
-        FinalGame dialog = new FinalGame(game);
+        insert(new Game(game));
 end;
 
 rule "BigBattles"
@@ -1074,7 +1079,7 @@ rule "BigBattles"
 		t: GUIState(odpowiedz == "Big Battles" && trescPytania == "What means more to you, enormous large scale battles, or the ability to take precise control of your ship's every move?")
 	then
 		String game = "ACE ONLINE";
-        FinalGame dialog = new FinalGame(game);
+        insert(new Game(game));
 end;
 
 rule "Ground"
@@ -1128,7 +1133,7 @@ rule "Tank"
 		t: GUIState(odpowiedz == "Tank" && trescPytania == "Do you see your self as a World War II vintage tank, or deadly cartoon soldier?")
 	then
 		String game = "WORLD OF TANKS";
-        FinalGame dialog = new FinalGame(game);
+        insert(new Game(game));
 end;
 
 rule "Soldier"
@@ -1136,7 +1141,7 @@ rule "Soldier"
 		t: GUIState(odpowiedz == "Soldier" && trescPytania == "Do you see your self as a World War II vintage tank, or deadly cartoon soldier?")
 	then
 		String game = "LOST SAGA";
-        FinalGame dialog = new FinalGame(game);
+        insert(new Game(game));
 end;
 
 
@@ -1168,7 +1173,7 @@ rule "Mummies"
 		t: GUIState(odpowiedz == "Mummies" && trescPytania == "Mummies or Werewolves?")
 	then
 		String game = "MISSION AGAINST TERROR";
-        FinalGame dialog = new FinalGame(game);
+        insert(new Game(game));
 end;
 
 rule "Werewolves"
@@ -1176,5 +1181,14 @@ rule "Werewolves"
 		t: GUIState(odpowiedz == "Werewolves" && trescPytania == "Mummies or Werewolves?")
 	then
 		String game = "WOLF TEAM";
+        insert(new Game(game));
+end;
+
+
+rule "END"
+	when
+		g: Game()
+	then
+		String game = g.getTitle();
         FinalGame dialog = new FinalGame(game);
 end;
